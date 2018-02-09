@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.lucifer.mapper.shop.SmsCodeMapper">
+	<insert id="insertSmsCode" >
+		insert into sms_code (phone,type,code,created_at,updated_at) values (#{phone},#{type},#{code},#{createdAt},#{updatedAt})
+	</insert>
+
+	<select id="getLastSmsCode" resultType="java.lang.String">
+		select code from sms_code where phone = #{phone} and type = #{type} order by id desc limit 1
+	</select>
+
+</mapper>

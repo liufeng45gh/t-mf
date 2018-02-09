@@ -15,37 +15,30 @@ public class Member implements Serializable{
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = -1183367815938163456L;
-	
-	static final Logger logger = LoggerFactory.getLogger(Member.class);
+	private static final long serialVersionUID = -1l;
+
 
 	// id        自增长(长整,以下所有id字段皆为该规则)
 	private Long id;
 
-	// weixin_id 微信绑定ID,允许为空
-	private String weixinId;
-
-	// weibo_id  微博绑定ID,允许为空
-	private String weiboId;
-
-	// qq_id     QQ绑定ID,允许为空
-	private String qqId;
 
 	// phone     绑定手机,允许为空
 	private String phone;
 	
-	// mail      绑定邮箱,允许为空
-	private String mail;
+
 	
 	// password  密码,(加密后的密码,非明文),允许为空
 	private String password;
 	
-	//重复密码
-	private String rePassword;
-	
+
 	// salt      加密盐,6位随机数字字母组合,允许为空
 	private String salt;
-	
+
+	// weixin_id 微信绑定ID,允许为空
+	private String weixin;
+
+	// qq_id     QQ绑定ID,允许为空
+	private String qq;
 
 	//验证码
 	private String code;
@@ -70,33 +63,43 @@ public class Member implements Serializable{
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date birthday;
 
-	private String receiptAddress;
+	private String feature;
 
-	private String signature;
+	private String description;
 
+	private String nationality;
 
+	private Float height;
 	
+	private Float weight;
 
+	private Float bust;
+
+	private String city;
+
+	private String language;
+
+	private String line;
+
+	private String facebook;
+
+	// mail      绑定邮箱,允许为空
+	private String email;
+
+	private Float timePrice;
+
+	private Float nightPrice;
+
+	private Float dayPrice;
+
+	private String picture;
 
 	// 创建时间（记录）
-	@DateTimeFormat(pattern="yyyy-MM-dd HH:mm:ss")
+
 	protected  Date createdAt;
 	
 	// 更新时间（记录）
-	@DateTimeFormat(pattern="yyyy-MM-dd HH:mm:ss")
-	
 	protected Date updatedAt;
-	
-
-	
-//	// level     用户等级
-//	private String level;
-//	
-//	// points    用户积分
-//	private Integer points;
-	
-	public Member() {
-	}
 
 	public Long getId() {
 		return id;
@@ -107,32 +110,21 @@ public class Member implements Serializable{
 	}
 
 
-
-	public String getWeixinId() {
-		return weixinId;
+	public String getWeixin() {
+		return weixin;
 	}
 
-	public void setWeixinId(String weixinId) {
-		this.weixinId = weixinId;
+	public void setWeixin(String weixin) {
+		this.weixin = weixin;
 	}
 
-	public String getWeiboId() {
-		return weiboId;
+	public String getQq() {
+		return qq;
 	}
 
-	public void setWeiboId(String weiboId) {
-		this.weiboId = weiboId;
+	public void setQq(String qq) {
+		this.qq = qq;
 	}
-
-	public String getQqId() {
-		return qqId;
-	}
-
-	public void setQqId(String qqId) {
-		this.qqId = qqId;
-	}
-
-
 
 	public String getPhone() {
 		return phone;
@@ -142,13 +134,7 @@ public class Member implements Serializable{
 		this.phone = phone;
 	}
 
-	public String getMail() {
-		return mail;
-	}
 
-	public void setMail(String mail) {
-		this.mail = mail;
-	}
 
 	public String getPassword() {
 		return password;
@@ -168,13 +154,7 @@ public class Member implements Serializable{
 
 
 
-	public String getRePassword() {
-		return rePassword;
-	}
 
-	public void setRePassword(String rePassword) {
-		this.rePassword = rePassword;
-	}
 
 	public String getCode() {
 		return code;
@@ -217,16 +197,7 @@ public class Member implements Serializable{
 		this.gender = gender;
 	}
 
-//	@DateTimeFormat(pattern = "yyyy-MM-dd")
-//	@JsonSerialize(using=DateSerializer.class)
-//	public Date getBirth() {
-//		return birth;
-//	}
-//
-//	@DateTimeFormat(pattern = "yyyy-MM-dd")
-//	public void setBirth(Date birth) {
-//		this.birth = birth;
-//	}
+
 
 
 	public Date getBirthday() {
@@ -266,19 +237,124 @@ public class Member implements Serializable{
 		this.status = status;
 	}
 
-	public String getReceiptAddress() {
-		return receiptAddress;
+
+	public String getFeature() {
+		return feature;
 	}
 
-	public void setReceiptAddress(String receiptAddress) {
-		this.receiptAddress = receiptAddress;
+	public void setFeature(String feature) {
+		this.feature = feature;
 	}
 
-	public String getSignature() {
-		return signature;
+	public String getDescription() {
+		return description;
 	}
 
-	public void setSignature(String signature) {
-		this.signature = signature;
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	public String getNationality() {
+		return nationality;
+	}
+
+	public void setNationality(String nationality) {
+		this.nationality = nationality;
+	}
+
+	public Float getHeight() {
+		return height;
+	}
+
+	public void setHeight(Float height) {
+		this.height = height;
+	}
+
+	public Float getWeight() {
+		return weight;
+	}
+
+	public void setWeight(Float weight) {
+		this.weight = weight;
+	}
+
+	public Float getBust() {
+		return bust;
+	}
+
+	public void setBust(Float bust) {
+		this.bust = bust;
+	}
+
+	public String getCity() {
+		return city;
+	}
+
+	public void setCity(String city) {
+		this.city = city;
+	}
+
+	public String getLanguage() {
+		return language;
+	}
+
+	public void setLanguage(String language) {
+		this.language = language;
+	}
+
+	public String getLine() {
+		return line;
+	}
+
+	public void setLine(String line) {
+		this.line = line;
+	}
+
+	public String getFacebook() {
+		return facebook;
+	}
+
+	public void setFacebook(String facebook) {
+		this.facebook = facebook;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public Float getTimePrice() {
+		return timePrice;
+	}
+
+	public void setTimePrice(Float timePrice) {
+		this.timePrice = timePrice;
+	}
+
+	public Float getNightPrice() {
+		return nightPrice;
+	}
+
+	public void setNightPrice(Float nightPrice) {
+		this.nightPrice = nightPrice;
+	}
+
+	public Float getDayPrice() {
+		return dayPrice;
+	}
+
+	public void setDayPrice(Float dayPrice) {
+		this.dayPrice = dayPrice;
+	}
+
+	public String getPicture() {
+		return picture;
+	}
+
+	public void setPicture(String picture) {
+		this.picture = picture;
 	}
 }

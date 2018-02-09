@@ -45,14 +45,55 @@ header {
     box-sizing: border-box;
 }
 
-.input-container>div {
-    position: absolute;
-    width: .6rem;
+.input-container .fieldName {
+    width: 0.7rem;
     display: inline-block;
     font-family: PingFang-SC-Regular;
-    text-align: left;
+    text-align: right;
+    float: left;
 }
 
+.acc-input{
+    float: left;
+    height: .48rem;
+    line-height: .48rem;
+    1.9rem;
+    margin-left: 0.1rem;
+}
+.input-container .acc-btn{
+    background-color: #f23030;
+    height: .38rem;
+    width: 0.85rem;
+    line-height: 0.38rem;
+    margin-top: 0.05rem;
+    text-align: center;
+    border-radius: 3px;
+    margin-right: 0.08rem;
+    color: white;
+    float: right;
+}
+
+
+
+.input-container .img-box{
+    height: .38rem;
+    width: 0.85rem;
+    line-height: 0.38rem;
+    margin-top: 0.05rem;
+    text-align: center;
+    margin-right: 0.08rem;
+    float: right;
+}
+
+.input-container .acc-select{
+        height: .38rem;
+        width: 0.85rem;
+        line-height: 0.38rem;
+        margin-top: 0.05rem;
+        text-align: center;
+        margin-right: 0.08rem;
+        float: right;
+}
 input {
     border-radius: 0;
     border: 0;
@@ -161,4 +202,15 @@ body {
 
 .btn, .btn:active, .btn:hover, .btn:visited {
     color: #848689;
+}
+
+.btn-active {
+    background-color: #f23030;
+    color: #fff;
+}
+
+.btn-to-login{
+    background-color: green;
+    color: #fff;
+    margin-top: 0.1rem;
 }

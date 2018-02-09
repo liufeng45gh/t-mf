@@ -61,19 +61,7 @@ public class ApiAccountController {
 	}
 	
 	
-	/**
-	 * 注册
-	 * @param @RequestBody user  example {phone:"18610814074",code:"xxxxxx",password:"xxxxxxx",rePassword:"xxxxxx"}
-	 * @return {ok:true,data:"token-Characters"}
-	 * @throws Exception
-	 */
-	@ApiOperation(value = "注册")
-	@RequestMapping(value="/v1/registers",method=RequestMethod.POST)
-	@ResponseBody
-	public Result register(@RequestBody User user) throws Exception{		
-		Result result = accountService.register(user);		
-		return result;
-	}
+
 	
 	/**
 	 * 重置密码

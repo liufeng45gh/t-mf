@@ -2,14 +2,22 @@ package com.lucifer.service;
 
 
 
+import com.lucifer.enums.SmsCodeType;
 import com.lucifer.mapper.oauth2.UserMapper;
+import com.lucifer.mapper.shop.MemberMapper;
+import com.lucifer.mapper.shop.SmsCodeMapper;
+import com.lucifer.model.Member;
+import com.lucifer.model.SmsCode;
 import com.lucifer.model.User;
 import com.lucifer.utils.*;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
+import java.io.IOException;
 import java.util.UUID;
 
 @Service
@@ -26,46 +34,18 @@ public class AccountService {
 	
 	@Resource
 	private UserMapper userMapper;
-	
 
-		
-	@Transactional(propagation= Propagation.REQUIRED)
-	public Result register(User user) throws Exception{
-		
-		Result  result = smsService.checkCode(user.getPhone(), user.getCode());
-		if (!result.isOk()) {
-			return Result.fail("验证码错误");
-		}
-		if (!user.getPassword().equals(user.getRePassword())) {
-			return Result.fail("2次密码不一致");
-		}
-		if (this.isUserExist(user.getPhone())) {
-			return Result.fail("用户已经存在");
-		}
-		String account = "mp_"+ RandomUtil.getNextAccount();
-		user.setAccount(account);
-		user.setPhone(user.getPhone());
-		String salt = RandomUtil.getNextSalt();
-		user.setSalt(salt);
-		String encrypt_password = Md5Utils.md5(Md5Utils.md5(user.getPassword())+salt);
-		user.setPassword(encrypt_password);
-		UUID uuid = UUID.randomUUID();
-		user.setUuid(uuid.toString());
-		user.setCreatedAt(DateUtils.now());
-		user.setUpdatedAt(DateUtils.now());
-		userMapper.insertUser(user);
-		user.setPassword(user.getRePassword());
-		//userCenterService.register(user);
-		//user.setNickName("用户"+user.getUserId());
-		//userDao.initUserNick(user);
-		//初始化
-		userService.userInit(user.getId());
-		
-		//登录
-		user.setPassword(user.getRePassword());
-		return userLoginService.login(user);
-		//return Result.ok();
-	}
+	@Resource
+	private SmsCodeMapper smsCodeMapper;
+
+	@Resource
+	private MemberMapper memberMapper;
+
+	@Resource
+	private MemberLoginService memberLoginService;
+
+	private Logger logger = LoggerFactory.getLogger(this.getClass());
+
 	
 	@Transactional(propagation= Propagation.REQUIRED)
 	public Result resetPassword(User user) throws Exception{
@@ -111,7 +91,7 @@ public class AccountService {
 			return Result.fail("用户已绑定手机");
 		}
 		
-		Boolean isExist = this.isUserExist(user.getPhone());
+		Boolean isExist = this.isMemberExist(user.getPhone());
 		
 		if (isExist) {
 			return Result.fail("该手机号已被占用");
@@ -161,7 +141,7 @@ public class AccountService {
 		}		
 		
 				
-		Boolean isExist = this.isUserExist(user.getPhone());
+		Boolean isExist = this.isMemberExist(user.getPhone());
 		
 		if (isExist) {
 			return Result.fail("该手机号已被占用");
@@ -184,7 +164,7 @@ public class AccountService {
 	}
 	
 	public Result isPhoneExist(String phone) throws Exception{
-		if (this.isUserExist(phone)) {
+		if (this.isMemberExist(phone)) {
 			return Result.fail("用户已经存在");
 		}
 		return Result.ok("手机未注册");
@@ -195,18 +175,9 @@ public class AccountService {
 		userMapper.userBindPhone(user);
 	}
 	
-	public Boolean isUserExist(String telephone) throws Exception{
-//		Integer resultCount = sqlSession.selectOne("userCountByPhone", telephone);
-//		if (resultCount>0) {
-//			return true;
-//		}
-//		Boolean isUserCanRegister = userCenterService.canUserRegister(telephone);
-//		if (isUserCanRegister) {
-//			return false;
-//		}
-//		return true;
-		User user = userMapper.getUserByPhone(telephone);
-		if (null!=user) {
+	public Boolean isMemberExist(String telephone) {
+		Member member = memberMapper.getMemberByPhone(telephone);
+		if (null != member) {
 			return true;
 		}
 		return false;
@@ -227,6 +198,61 @@ public class AccountService {
 		}else{
 			return false;
 		}
+	}
+
+	public Result sendPhoneRegisterMsg(String phone){
+//		if(this.isMemberExist(phone)) {
+//			return Result.fail("手机号已存在");
+//		}
+		String code = RandomUtil.getRamdomIntString(6);
+		logger.info("send sms code is: {}",code);
+		SmsCode smsCode = new SmsCode();
+		smsCode.setCode(code);
+		smsCode.setPhone(phone);
+		smsCode.setType(SmsCodeType.register.name());
+		smsCode.setCreatedAt(DateUtils.now());
+		smsCode.setUpdatedAt(DateUtils.now());
+		smsCodeMapper.insertSmsCode(smsCode);
+		return Result.ok();
+	}
+
+	public Result registerOrResetPass(String phone,String phoneCode,String password) throws Exception {
+		Result checkResult = this.checkPhoneRegisterCode(phone,phoneCode);
+		if(!checkResult.isOk()){
+			return checkResult;
+		}
+		Member member = memberMapper.getMemberByPhone(phone);
+		if (null == member) {
+			member = new Member();
+			member.setPhone(phone);
+			String salt = RandomUtil.getNextSalt();
+			member.setSalt(salt);
+			String encrypt_password = Md5Utils.md5(Md5Utils.md5(password)+salt);
+			member.setPassword(encrypt_password);
+			member.setCreatedAt(DateUtils.now());
+			member.setUpdatedAt(DateUtils.now());
+			String account = "mp_"+RandomUtil.getNextAccount();
+			member.setNickName(account);
+			memberMapper.insertMember(member);
+		} else {
+			String encrypt_password = Md5Utils.md5(Md5Utils.md5(password)+member.getSalt());
+			member.setPassword(encrypt_password);
+			member.setUpdatedAt(DateUtils.now());
+			memberMapper.updateMemberPassword(member);
+		}
+
+		member.setPassword(password);
+		Result loginResult = memberLoginService.loginByPhone(member);
+		return loginResult;
+	}
+
+	private Result checkPhoneRegisterCode(String phone,String code) throws IOException {
+		String dbCode = smsCodeMapper.getLastSmsCode(phone,SmsCodeType.register.name());
+		logger.info("dbCode sms code is: {}",dbCode);
+		if (code.equals(dbCode)) {
+			return Result.ok();
+		}
+		return Result.fail("验证码错误");
 	}
 
 }

@@ -1,5 +1,6 @@
 package com.lucifer.config;
 
+import com.lucifer.annotation.UserDb;
 import org.mybatis.spring.mapper.MapperScannerConfigurer;
 import org.springframework.boot.autoconfigure.AutoConfigureAfter;
 import org.springframework.context.annotation.Bean;
@@ -18,8 +19,8 @@ public class MyBatisMapperScannerConfig {
     public MapperScannerConfigurer mapperScannerConfigurer() {
         MapperScannerConfigurer mapperScannerConfigurer = new MapperScannerConfigurer();
         mapperScannerConfigurer.setSqlSessionFactoryBeanName("sqlSessionFactory");
-        mapperScannerConfigurer.setBasePackage("com.lucifer.mapper.oauth2");
-        mapperScannerConfigurer.setAnnotationClass(org.mybatis.spring.annotation.MapperScan.class);
+        mapperScannerConfigurer.setBasePackage("com.lucifer.mapper");
+        mapperScannerConfigurer.setAnnotationClass(UserDb.class);
         return mapperScannerConfigurer;
     }
 }

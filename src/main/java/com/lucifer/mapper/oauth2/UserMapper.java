@@ -1,5 +1,6 @@
 package com.lucifer.mapper.oauth2;
 
+import com.lucifer.annotation.UserDb;
 import com.lucifer.model.AccessToken;
 import com.lucifer.model.User;
 import org.mybatis.spring.annotation.MapperScan;
@@ -9,7 +10,7 @@ import java.util.List;
 /**
  * Created by Administrator on 2017/12/23.
  */
-@MapperScan
+@UserDb
 public interface UserMapper {
 
     User getUserByAccount(String account);

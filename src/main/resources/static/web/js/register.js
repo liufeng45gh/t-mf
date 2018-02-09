@@ -15,7 +15,7 @@ $(document).ready(function () {
             return;
         }
         var data_send = {};
-        data_send.phone = phone;
+        data_send.phone = $("#acc-select").val() + phone;
         data_send.imgCode = imgCode;
         data_send.random = Math.random();
 
@@ -28,16 +28,6 @@ $(document).ready(function () {
         });
 
         request.fail(function( jqXHR, textStatus ) {
-           //alert("fail");
-           //alert(jqXHR.responseText);
-           //var result_json = JSON.parse(jqXHR.responseText);
-           //alert(result_json.message);
-           //$(".tips_for_submit").parent().addClass("check_result_wrong");
-           //$(".tips_for_submit").parent().show();
-           //$(".tips_for_submit").html(result_json.message);
-           //$(".tips_for_submit").show();
-            //$("#check_message").css("color","red");
-            //$("#check_message").html("昵称已被占用 ");
              layer.msg("系统错误", {icon: 5});
         });
 
@@ -88,7 +78,7 @@ $(document).ready(function () {
             return;
         }
         var phoneCode = $("#phone-check-input").val();
-        if (isEmpty(phoneCode)||phoneCode.length != 4) {
+        if (isEmpty(phoneCode)||phoneCode.length != 6) {
             layer.msg("手机验证码输入有误", {icon: 5});
             return;
         }
@@ -98,7 +88,7 @@ $(document).ready(function () {
             return;
         }
         var data_send = {};
-        data_send.phone = phone;
+        data_send.phone = $("#acc-select").val() + phone;
         data_send.phoneCode = phoneCode;
         data_send.password = password;
         data_send.random = Math.random();
@@ -112,31 +102,15 @@ $(document).ready(function () {
         });
 
         request.fail(function( jqXHR, textStatus ) {
-           //alert("fail");
-           //alert(jqXHR.responseText);
-           //var result_json = JSON.parse(jqXHR.responseText);
-           //alert(result_json.message);
-           //$(".tips_for_submit").parent().addClass("check_result_wrong");
-           //$(".tips_for_submit").parent().show();
-           //$(".tips_for_submit").html(result_json.message);
-           //$(".tips_for_submit").show();
-            //$("#check_message").css("color","red");
-            //$("#check_message").html("昵称已被占用 ");
              layer.msg("系统错误", {icon: 5});
         });
 
         request.done(function(data) {
-             //check_result = true;
-             //alert(data);
              if(data.ok){
-                 //check_result = true;
-                 //window.location.href = "/account/chose_type";
                  setSessionCookie("token",data.data.token);
-                 layer.msg("注册成功!");
-                  //setSessionCookie("token",data.data.token);
+                 layer.msg("操作成功!");
                  window.parent.location.reload();
              }else{
-                 //check_result = false;
                 layer.msg(data.message);
              }
         });

@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.lucifer.mapper.shop.MemberMapper">
+    <resultMap type="com.lucifer.model.Member" id="MemberMap">
+        <id column="id" property="id"/>
+        <result column="phone" property="phone"/>
+        <result column="password" property="password"/>
+        <result column="salt" property="salt"/>
+        <result column="weixin" property="weixin"/>
+        <result column="qq" property="qq"/>
+        <result column="nick_name" property="nickName"/>
+        <result column="avatar" property="avatar"/>
+        <result column="gender" property="gender"/>
+        <result column="birthday" property="birthday"/>
+        <result column="feature" property="feature"/>
+        <result column="description" property="description"/>
+        <result column="nationality" property="nationality"/>
+        <result column="height" property="height"/>
+        <result column="weight" property="weight"/>
+        <result column="bust" property="bust"/>
+        <result column="city" property="city"/>
+        <result column="language" property="language"/>
+        <result column="line" property="line"/>
+        <result column="facebook" property="facebook"/>
+        <result column="email" property="email"/>
+        <result column="time_price" property="timePrice"/>
+        <result column="night_price" property="nightPrice"/>
+        <result column="day_price" property="dayPrice"/>
+        <result column="picture" property="picture"/>
+        <result column="created_at" property="createdAt"/>
+        <result column="updated_at" property="updatedAt"/>
+    </resultMap>
+    <insert id="insertMember">
+        insert into member
+        (phone, password,salt,nick_name,created_at,updated_at)
+        values
+        (#{phone},#{password},#{salt},#{nickName},#{createdAt},#{updatedAt})
+    </insert>
+    <select id="getMemberByPhone"  resultMap="MemberMap">
+        select * from member where phone = #{phone}
+    </select>
+
+
+
+
+
+    <select id="getMemberById"  resultMap="MemberMap">
+        select * from member where id=#{id}
+    </select>
+    
+    <select id="memberCountByNickName" resultType="java.lang.Integer">
+        select count(*) from member where nick_name = #{nickName}
+    </select>
+    
+    <update id="updateMemberNick">
+        update member set nick_name = #{nickName} where id = #{id}
+    </update>
+
+    <update id="updateMemberInfo">
+        update member set signature = #{signature} ,gender = #{gender},birthday = #{birthday}, receipt_address = #{receiptAddress} where id = #{id}
+    </update>
+    <update id="updateMemberAvatar">
+        update member set avatar = #{avatar} where id = #{id}
+    </update>
+    <update id="updateMemberPassword">
+        update member set password = #{password}, updated_at = #{updatedAt} where id = #{id}
+    </update>
+
+    <select id="memberCmsSearch"  resultMap="MemberMap">
+        ${_parameter}
+    </select>
+    <select id="memberCmsSearchCount" resultType="java.lang.Integer">
+        ${_parameter}
+    </select>
+</mapper>

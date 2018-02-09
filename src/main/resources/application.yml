@@ -4,9 +4,8 @@ server:
    resetCache: true
 spring:
   redis:
-    host: test.haifuc.cn
+    host: localhost
     port: 6379
-    password: lucifer-shop
 
 # DATASOURCE
 jdbc:
@@ -14,22 +13,22 @@ jdbc:
     url: jdbc:mysql://test.haifuc.cn/oauth2-user?useUnicode=true&characterEncoding=utf-8&autoReconnect=true&rewriteBatchedStatements=TRUE&zeroDateTimeBehavior
     username: root
     password: lucifer-HFC-20170501
-jdbc-shop:
-    driverClass: com.mysql.jdbc.Driver
-    url: jdbc:mysql://test.haifuc.cn/t-mf?useUnicode=true&characterEncoding=utf-8&autoReconnect=true&rewriteBatchedStatements=TRUE&zeroDateTimeBehavior
-    username: root
-    password: lucifer-HFC-20170501
+#jdbc-shop:
+#    driverClass: com.mysql.jdbc.Driver
+#    url: jdbc:mysql://test.haifuc.cn/t-mf?useUnicode=true&characterEncoding=utf-8&autoReconnect=true&rewriteBatchedStatements=TRUE&zeroDateTimeBehavior
+#    username: root
+#    password: lucifer-HFC-20170501
 
 #jdbc:
 #    driverClass: com.mysql.jdbc.Driver
 #    url: jdbc:mysql://localhost/oauth2-user?useUnicode=true&characterEncoding=utf-8&autoReconnect=true&rewriteBatchedStatements=TRUE&zeroDateTimeBehavior
 #    username: root
 #    password:
-#jdbc-shop:
-#    driverClass: com.mysql.jdbc.Driver
-#    url: jdbc:mysql://localhost/shop?useUnicode=true&characterEncoding=utf-8&autoReconnect=true&rewriteBatchedStatements=TRUE&zeroDateTimeBehavior
-#    username: root
-#    password:
+jdbc-shop:
+    driverClass: com.mysql.jdbc.Driver
+    url: jdbc:mysql://localhost/t-mf?useUnicode=true&characterEncoding=utf-8&autoReconnect=true&rewriteBatchedStatements=TRUE&zeroDateTimeBehavior
+    username: root
+    password:
 
 
 # MyBatis
