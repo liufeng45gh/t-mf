@@ -1,9 +1,11 @@
 package com.lucifer.controller.web;
 
-import com.lucifer.mapper.shop.MemberMapper;
+
 import com.lucifer.model.Member;
+import com.lucifer.model.Picture;
 import com.lucifer.service.MemberLoginService;
 import com.lucifer.service.MemberService;
+import com.lucifer.service.PictureService;
 import com.lucifer.utils.Result;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CookieValue;
@@ -13,6 +15,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import java.util.List;
 
 @Controller
 @RequestMapping(value="/u-center")
@@ -24,6 +27,9 @@ public class UCenterController {
 
     @Resource
     private MemberService memberService;
+
+    @Resource
+    private PictureService pictureService;
 
 
     @RequestMapping(value="/index",method = RequestMethod.GET)
@@ -86,6 +92,8 @@ public class UCenterController {
     public String toUpdatePrice(@CookieValue String token, HttpServletRequest request){
         Member member = memberLoginService.getMemberByToken(token);
         request.setAttribute("member",member);
+        List<Picture> pictureList = pictureService.memberPictureList(token);
+        request.setAttribute("pictureList",pictureList);
         return "/web/u-center/up-price";
     }
 
@@ -107,6 +115,15 @@ public class UCenterController {
     @ResponseBody
     public Result submitUpdateMainPicture(@CookieValue String token, String picture){
         memberService.updateMemberMainPicture(token,picture);
+        return Result.ok();
+    }
+
+
+
+    @RequestMapping(value="/more-picture-add",method = RequestMethod.POST)
+    @ResponseBody
+    public Result submitMorePictureAdd(@CookieValue String token, String picture){
+        memberService.insertMorePicture(token,picture);
         return Result.ok();
     }
 

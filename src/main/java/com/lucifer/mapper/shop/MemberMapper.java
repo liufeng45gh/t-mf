@@ -28,4 +28,6 @@ public interface MemberMapper {
     Integer updateMemberPrice(Member member);
 
     Integer updateMemberMainPicture(@Param(value = "id") Long id,@Param(value = "picture") String picture);
+
+
 }

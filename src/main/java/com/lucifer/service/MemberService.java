@@ -1,6 +1,7 @@
 package com.lucifer.service;
 
 import com.lucifer.mapper.shop.MemberMapper;
+import com.lucifer.mapper.shop.PictureMapper;
 import com.lucifer.model.Member;
 import com.lucifer.utils.Result;
 import org.springframework.stereotype.Service;
@@ -15,6 +16,9 @@ public class MemberService {
 
     @Resource
     private MemberLoginService memberLoginService;
+
+    @Resource
+    private PictureMapper pictureMapper;
 
     public Result updateNickName(String token,String nickName){
         Long tokenMemberId =  memberLoginService.getMemberIdByToken(token);
@@ -57,5 +61,10 @@ public class MemberService {
     public void updateMemberMainPicture(String token, String picture){
         Long tokenMemberId =  memberLoginService.getMemberIdByToken(token);
         memberMapper.updateMemberMainPicture(tokenMemberId,picture);
+    }
+
+    public void insertMorePicture(String token, String picture){
+        Long tokenMemberId =  memberLoginService.getMemberIdByToken(token);
+        pictureMapper.insertMorePicture(tokenMemberId,picture);
     }
 }

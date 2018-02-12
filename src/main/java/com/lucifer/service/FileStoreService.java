@@ -35,12 +35,12 @@ public class FileStoreService {
             try {
                 fos.write(bytes);
                 fos.close();
-                logger.info("new file: %s", file.getAbsolutePath());
+                logger.info("new file: {}", file.getAbsolutePath());
             } finally {
                 fos.close();
             }
         } else {
-            logger.info("exist file: %s", file.getAbsolutePath());
+            logger.info("exist file: {}", file.getAbsolutePath());
         }
 
         return domainStr + "/" + key;

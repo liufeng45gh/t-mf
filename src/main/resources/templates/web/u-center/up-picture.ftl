@@ -9,7 +9,7 @@
     <meta content="telephone=no" name="format-detection"/>
     <meta content="black" name="apple-mobile-web-app-status-bar-style"/>
     <title>修改图片</title>
-    <link rel="stylesheet" href="/css/u-center.css?v=20170526"/>
+    <link rel="stylesheet" href="/css/u-center.css?v=1.0"/>
     <script  src="/web/js/jquery-3.1.1.js"></script>
     <script  src="/web/js/common.js"></script>
     <script  type="text/javascript" src="/layer/layer.js"></script>
@@ -40,16 +40,26 @@
         <div  class="login-wrap login-wrap-active">
             <div class="area-container">
                 <div class="fieldName">更多图片</div>
+                <div class="more-img-con">
+                   <img src="http://localhost/images/02883d09-b9dc-4a98-9b76-a446eb174be7.jpg"/>
+                    <div class="img-delete-btn">删除</div>
+                </div>
             </div>
         </div>
 
         <div class="notice">&nbsp;</div>
-        <div  id="btn-add-img" class="btn btn-add-img" >添加更多新图</div>
+        <form  method="post" id="more-add-form">
+            <div  id="btn-add-img" class="btn btn-add-img" >
+                <input type="file" class="file-full" id="up-new-file" style="width:100%;"/>
+                <div class="button-full">添加更多新图</div>
+            </div>
+        </form>
 
         <a   class="btn btn-to-login" style="display:block;" href="/u-center/index.html">->返回主菜单</a>
     </div>
 </section>
 <script  src="/web/js/u-center/up-picture.js?v=1.0"></script>
 <script type="text/javascript" charset="UTF-8" src="/web/js/u-center/main-picture-select.js?v=1.0"></script>
+<script type="text/javascript" charset="UTF-8" src="/web/js/u-center/more-picture-add.js?v=1.1"></script>
 </body>
 </html>

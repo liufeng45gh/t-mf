@@ -109,4 +109,6 @@
     <select id="memberCmsSearchCount" resultType="java.lang.Integer">
         ${_parameter}
     </select>
+
+
 </mapper>
