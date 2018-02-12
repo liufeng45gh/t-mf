@@ -1,6 +1,7 @@
 package com.lucifer.controller;
 
 
+import com.lucifer.service.FileStoreService;
 import com.lucifer.service.QiniuCloudService;
 import com.lucifer.utils.Result;
 import com.wordnik.swagger.annotations.Api;
@@ -9,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.annotation.Resource;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -23,6 +25,9 @@ public class CloudController {
     @Autowired
     QiniuCloudService qiniuCloudService;
 
+    @Resource
+    FileStoreService fileStoreService;
+
 //    @Consumes(MediaType.MULTIPART_FORM_DATA)
 //    @ApiImplicitParams(@ApiImplicitParam(dataType = "file", name = "file", paramType = "body"))
     @ApiOperation(httpMethod = "POST", value = "文件上传",response = String.class)
@@ -31,8 +36,9 @@ public class CloudController {
     public Result upload(@RequestParam("file") MultipartFile file){
 
         try {
-            String uploadUrl;
-            uploadUrl = qiniuCloudService.simpleUploadWithoutKey(file);
+//            String uploadUrl;
+//            uploadUrl = qiniuCloudService.simpleUploadWithoutKey(file);
+            String uploadUrl = fileStoreService.saveFile(file);
             return  Result.ok(uploadUrl);
 //            cloud.test();
         } catch (Exception e) {

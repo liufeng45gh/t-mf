@@ -1,0 +1,216 @@
+html {
+    -ms-text-size-adjust: 100%;
+    -webkit-text-size-adjust: 100%;
+    overflow-y: scroll;
+    -webkit-overflow-scrolling: touch;
+    width: 100%;
+    font-size: 100px;
+    -webkit-tap-highlight-color: transparent;
+}
+
+button, html, input, select, textarea {
+    font-family: "Helvetica Neue",Helvetica,Tahoma,sans-serif;
+}
+
+
+.page, header {
+    width: 100%;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    text-align: center;
+}
+
+
+header {
+    height: .45rem;
+    line-height: .45rem;
+    background: #f9f9f9;
+    color: #616161;
+    font-size: .17rem;
+    border-bottom: 1px solid #bbb;
+    z-index: 999;
+}
+
+
+.btn {
+    height: .45rem;
+    line-height: .46rem;
+    background-color: #eee;
+    border-radius: 2px;
+    border: 0;
+}
+
+.btn, .btn:active, .btn:hover, .btn:visited {
+    color: #fff;
+}
+
+body {
+    font-size: .14rem;
+    text-align: center;
+}
+
+body, html {
+    height: 100%;
+}
+
+body {
+    margin: 0;
+    line-height: 1.5;
+    color: #333;
+    background-color: #fff;
+}
+
+.wrap {
+    max-width: 7.5rem;
+    margin: 0 auto;
+    padding: 0 .2rem .2rem .2rem;
+}
+
+.btn, input {
+    font-size: .14rem;
+    outline: 0;
+}
+
+
+
+.code-box {
+    width: .75rem;
+    height: .23rem;
+    right: .05rem;
+    top: .125rem;
+    border-left: 1px solid #d7d7d7;
+}
+
+.code-box, .sms-code-box, .pop-body, .pop-dialog, .toast-mask {
+    position: absolute;
+}
+
+.code-box img {
+    width: .75rem;
+    height: .3rem;
+    margin-top: -.28rem;
+    border: 1px solid transparent;
+}
+
+.login-btn{
+    width: 100%;
+}
+
+.btn-active {
+    background-color: #f23030;
+    color: #fff;
+}
+
+.btn-to-login{
+    background-color: green;
+    color: #fff;
+    margin-top: 0.1rem;
+}
+
+.btn-login-out{
+    background-color: #f23030;
+    color: #fff;
+    margin-top: 0.5rem;
+}
+
+.btn-warn{
+    background-color: orange;
+    color: #fff;
+    margin-top: 0.1rem;
+}
+.btn-add-img{
+    background-color: peru;
+    color: #fff;
+    margin-top: 0.1rem;
+}
+
+
+input {
+    border-radius: 0;
+    border: 0;
+    display: inline-block;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    font-family: PingFang-SC-Regular;
+}
+
+.input-container {
+    position: relative;
+    width: 100%;
+    height: .48rem;
+    line-height: .48rem;
+    overflow: hidden;
+    padding: 0 .05rem;
+    background-color: #fff;
+    border-bottom: 1px solid #d7d7d7;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+.input-container .fieldName {
+    width: 0.7rem;
+    display: inline-block;
+    font-family: PingFang-SC-Regular;
+    text-align: right;
+    float: left;
+}
+
+.acc-input{
+    float: left;
+    height: .48rem;
+    line-height: .48rem;
+    margin-left: 0.1rem;
+}
+
+.area-container {
+    position: relative;
+    width: 100%;
+    padding: 0 .05rem;
+    background-color: #fff;
+    border-bottom: 1px solid #d7d7d7;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+.area-container .fieldName {
+    width: 0.7rem;
+    font-family: PingFang-SC-Regular;
+    text-align: left;
+    height: 0.48rem;
+    line-height: 0.48rem;
+}
+.desc-area{
+     line-height: .48rem;
+     height: 1.5rem;
+     width: 100%;
+}
+
+.feature-area{
+   line-height: .48rem;
+    height: 1.5rem;
+    width: 100%;
+}
+
+.logo_outer {
+    width: 100%;
+    height: 2rem;
+    padding: 0 4px 0 0;
+    padding-right: 0\9;
+    background: none;
+    margin: 0px 9px 0 10px;
+    position: relative;
+
+}
+
+.addLogoInput {
+    margin-left: 0px;
+    height: 2rem;
+    font-size: 50px;
+    opacity: 0;
+    z-index: 100;
+    position: absolute;
+    cursor: pointer;
+    FILTER: progid:DXImageTransform.Microsoft.Alpha(Opacity=0);
+}
+

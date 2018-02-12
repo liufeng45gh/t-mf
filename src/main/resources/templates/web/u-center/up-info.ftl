@@ -1,127 +1,127 @@
+
 <!DOCTYPE html>
-
-
-
-<html>
+<html lang="en">
 <head>
-    <#include "../c-head.ftl"/>
-
-    <link rel='stylesheet' href='/web/css/news.css' type='text/css' media='screen' />
-    <link rel='stylesheet' href='/web/css/u-center.css' type='text/css' media='screen' />
-
-    <script  type="text/javascript" src="/My97DatePicker/WdatePicker.js"></script>
-    <script type="text/javascript" charset="UTF-8" src="/web/js/jquery.form-3.45.js"></script>
+    <meta charset="UTF-8"/>
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0,user-scalable=no" name="viewport" />
+    <meta content="yes" name="apple-mobile-web-app-capable"/>
+    <meta content="yes" name="apple-touch-fullscreen"/>
+    <meta content="telephone=no" name="format-detection"/>
+    <meta content="black" name="apple-mobile-web-app-status-bar-style"/>
+    <title>编辑会员资料</title>
+    <link rel="stylesheet" href="/css/u-center.css?v=20170526"/>
+    <script  src="/web/js/jquery-3.1.1.js"></script>
+    <script src="/web/js/jquery-1.10.2.js"></script>
+    <script src="/web/js/jquery-migrate-1.2.1.js"></script>
+    <script  src="/web/js/common.js"></script>
+    <script  type="text/javascript" src="/layer/layer.js"></script>
+    <link rel="stylesheet" type="text/css" href="/timepicker/css/jquery-ui.css" />
+    <script type="text/javascript" src="/timepicker/js/jquery-ui.js"></script>
+    <script type="text/javascript" src="/timepicker/js/jquery-ui-slide.min.js"></script>
+    <script type="text/javascript" src="/timepicker/js/jquery-ui-timepicker-addon.js"></script>
 </head>
+<body >
+<!--禁止chrome自动填充-->
 
-<body>
-<div class="web-main page-min-width">
+<header id="header" style="display:block;">
+    <span class="icon icon-goback"></span>
+    <span class="txt-header">编辑会员资料</span>
+</header>
+<section class="page">
 
-
-    <#include "../c-top.ftl"/>
-
-
-
-    <div class="next-block">
-        <div class="info-fr wrapper-996 b-line" style="height: 80px;">
-            <div class="finance-block news-left">
-                <div class="news-nav">
-
-                    <a href="/"><div class="nav-item" >首页</div></a>   <div class="nav-item" >&gt;</div>
-                    <a href="/u-center/index"><div class="nav-item" >个人中心</div></a>
-
-
-                </div>
+    <div class="wrap loginPage">
+        <div class="login-wrap login-wrap-active">
+            <div class="input-container">
+                <div class="fieldName">生日*</div>
+                <input id="birth-input" class="acc-input txt-input "  value="${(member.birthday?string("yyyy-MM-dd"))!}" placeholder="请输入生日" readonly="readonly"/>
 
             </div>
         </div>
-        <div class="info-fr wrapper-996" style="height: 80px;">
-            <#include "menu.ftl"/>
+
+        <div  class="login-wrap login-wrap-active">
+            <div class="input-container">
+                <div class="fieldName">国籍*</div>
+                <input id="nationality-input" class="acc-input txt-input "  value="${(member.nationality)!}" placeholder="请输入国籍" />
+            </div>
         </div>
 
+        <div  class="login-wrap login-wrap-active">
+            <div class="input-container">
+                <div class="fieldName">身高*</div>
+                <input id="height-input" class="acc-input txt-input "  value="${(member.height)!}" placeholder="请输入身高" />
+            </div>
+        </div>
 
-    </div>
+        <div  class="login-wrap login-wrap-active">
+            <div class="input-container">
+                <div class="fieldName">胸围*</div>
+                <input id="bust-input" class="acc-input txt-input "  value="${(member.bust)!}" placeholder="请输入胸围" />
+            </div>
+        </div>
 
-    <div class="next-block bgf7" style="padding-top: 22px;height: 600px;">
-        <div class="info-fr wrapper-996 box" style="height: 555px;">
-            <div class="info-title "><span class="t-cn">基本信息</span> <span class="t-en">Basic Information</span></div>
-            <div class="info-fr wrapper-996 b-line" style="height: 1px;">&nbsp;</div>
-            <div style="clear:both;"></div>
-            <div>
-                <div class="h-box">
-                    <div class="head-fm">
-                        <img src="${(member.avatar)!}" style="width: 140px;height:140px;"/>
-                    </div>
-                    <div id="up-head-btn">修改头像</div>
-                </div>
-                <div class="i-box">
-                    <form action="/u-center/info/update" method="post" id="hfc-form">
-                    <div class="ftr">
-                        <div class="f-name">昵称</div>
-                        <div class="f-input">
-                            <input placeholder="请输入昵称" id="nickName" name="nickName" value="${(member.nickName)!}"/>
-                        </div>
-                    </div>
+        <div  class="login-wrap login-wrap-active">
+            <div class="input-container">
+                <div class="fieldName">体重*</div>
+                <input id="weight-input" class="acc-input txt-input "  value="${(member.weight)!}" placeholder="请输入体重" />
+            </div>
+        </div>
 
+        <div  class="login-wrap login-wrap-active">
+            <div class="input-container">
+                <div class="fieldName">所在城市*</div>
+                <input id="city-input" class="acc-input txt-input "  value="${(member.city)!}" placeholder="请输入所在城市" />
+            </div>
+        </div>
 
-                    <div class="ftr">
-                        <div class="f-name">个人签名</div>
-                        <div class="f-input">
-                            <input placeholder="请输入签名" value="${(member.signature)!}" name="signature"/>
-                        </div>
-                    </div>
+        <div  class="login-wrap login-wrap-active">
+            <div class="input-container">
+                <div class="fieldName">语言*</div>
+                <input id="language-input" class="acc-input txt-input "  value="${(member.language)!}" placeholder="请输入语言" />
+            </div>
+        </div>
 
-                    <div class="ftr">
-                        <div class="f-name">性别</div>
-                        <div class="f-input">
-                            <div class="male"><input type="radio" name="gender" class="radio" value="male"/><div class="gender-info">男</div></div>
-                            <div class="female"><input type="radio" name="gender" class="radio" value="female"/><div class="gender-info">女</div></div>
-                            <div class="unknown"><input type="radio" name="gender" class="radio" value="secrecy"/><div class="gender-info">保密</div></div>
-                        </div>
-                    </div>
+        <div  class="login-wrap login-wrap-active">
+            <div class="input-container">
+                <div class="fieldName">line</div>
+                <input id="line-input" class="acc-input txt-input "  value="${(member.line)!}" placeholder="请输入line" />
+            </div>
+        </div>
 
-                    <div class="ftr">
-                        <div class="f-name">生日</div>
-                        <div class="f-input">
-                            <input placeholder="请选择" id="birthday" name="birthday" onClick="WdatePicker({el:'birthday'})" value="${(member.birthday?string("yyyy-MM-dd"))!}"/>
-                        </div>
-                    </div>
+        <div  class="login-wrap login-wrap-active">
+            <div class="input-container">
+                <div class="fieldName">facebook</div>
+                <input id="facebook-input" class="acc-input txt-input "  value="${(member.facebook)!}" placeholder="请输入facebook" />
+            </div>
+        </div>
 
-                    <div class="ftr" style="height: 95px;">
-                        <div class="f-name">收货地址</div>
-                        <div class="f-area">
-                            <textarea name="receiptAddress">${(member.receiptAddress)!}</textarea>
-                        </div>
-                    </div>
-
-                    <div class="ftr">
-                        <div class="btn-submit">保存</div>
-                    </div>
-                    </form>
-
-                </div>
+        <div  class="login-wrap login-wrap-active">
+            <div class="input-container">
+                <div class="fieldName">邮箱</div>
+                <input id="email-input" class="acc-input txt-input "  value="${(member.email)!}" placeholder="请输入邮箱" />
             </div>
         </div>
 
 
 
+
+
+        <div class="notice">&nbsp;</div>
+        <div  id="btn-submit" class="btn btn-active" >提交修改</div>
+
+        <a   class="btn btn-to-login" style="display:block;" href="/u-center/index.html">->返回主菜单</a>
     </div>
-
-
-
-
-</div>
-
+</section>
+<script  src="/web/js/u-center/up-info.js?v=1.0"></script>
 <script>
-    var gender = "${(member.gender)!}";
-    $(".radio").each(function () {
-        if ($(this).val()==gender) {
-            $(this).attr('checked','true');
-        }
-
+$(document).ready(function () {
+    $('#birth-input').datetimepicker({
+         timepicker: false,
+         showHour: false,
+         showMinute: false,
+         showSecond: false,
+         timeFormat: ''
     });
-    $("#up-info").addClass("active");
+});
 </script>
-<script type="text/javascript" charset="UTF-8" src="/web/js/u-center/info-up.js"></script>
-
 </body>
 </html>

@@ -68,7 +68,7 @@
         
     </div>
 </section>
-<script  src="/web/js/register.js?v=1.0"></script>
+<script  src="/web/js/register.js?v=1.1"></script>
 <script>
 function changeCaptcha(){
 	document.getElementById("captchaImg").src="/captcha-image?"+Math.random();

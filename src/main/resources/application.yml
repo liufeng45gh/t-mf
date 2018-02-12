@@ -43,6 +43,10 @@ qiniu:
   secretKey: LHkSG-HRLccuUYSgb-TX0ZcDrsyUMEzSg6Z3GG6G
   publicBucket: shop-lucifer
   url: http://ojvbqldpg.bkt.clouddn.com/
+
+cdn:
+  fileStoreUrl: D:/nginx-1.13.8/html/images
+  domainStr: http://localhost/images
 multipart:
   maxFileSize: 10Mb
   maxRequestSize: 30Mb

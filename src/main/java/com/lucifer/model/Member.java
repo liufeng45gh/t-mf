@@ -3,6 +3,7 @@ package com.lucifer.model;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.lucifer.utils.Constant;
 import com.lucifer.utils.DateTimeSerializer;
+import com.lucifer.utils.StringHelper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -94,8 +95,9 @@ public class Member implements Serializable{
 
 	private String picture;
 
-	// 创建时间（记录）
+	private Integer selfShow;
 
+	// 创建时间（记录）
 	protected  Date createdAt;
 	
 	// 更新时间（记录）
@@ -357,4 +359,14 @@ public class Member implements Serializable{
 	public void setPicture(String picture) {
 		this.picture = picture;
 	}
+
+	public Integer getSelfShow() {
+		return selfShow;
+	}
+
+	public void setSelfShow(Integer selfShow) {
+		this.selfShow = selfShow;
+	}
+
+
 }

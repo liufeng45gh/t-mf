@@ -241,8 +241,8 @@ public class AccountService {
 			memberMapper.updateMemberPassword(member);
 		}
 
-		member.setPassword(password);
-		Result loginResult = memberLoginService.loginByPhone(member);
+		//member.setPassword(password);
+		Result loginResult = memberLoginService.loginByPhone(phone,password);
 		return loginResult;
 	}
 

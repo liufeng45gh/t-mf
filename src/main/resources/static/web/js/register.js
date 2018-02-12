@@ -109,7 +109,9 @@ $(document).ready(function () {
              if(data.ok){
                  setSessionCookie("token",data.data.token);
                  layer.msg("操作成功!");
-                 window.parent.location.reload();
+                 setTimeout(function(){
+                     window.location.href = "/u-center/index.html";
+                   },1000);
              }else{
                 layer.msg(data.message);
              }
