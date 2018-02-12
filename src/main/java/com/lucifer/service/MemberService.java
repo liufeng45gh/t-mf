@@ -63,8 +63,5 @@ public class MemberService {
         memberMapper.updateMemberMainPicture(tokenMemberId,picture);
     }
 
-    public void insertMorePicture(String token, String picture){
-        Long tokenMemberId =  memberLoginService.getMemberIdByToken(token);
-        pictureMapper.insertMorePicture(tokenMemberId,picture);
-    }
+
 }

@@ -8,7 +8,10 @@ import java.util.List;
 
 @ShopDb
 public interface PictureMapper {
+
     Integer insertMorePicture(@Param(value = "memberId") Long memberId, @Param(value = "pictureUrl") String pictureUrl);
 
     List<Picture> memberPictureList(@Param(value = "memberId") Long memberId);
+
+    Integer deletePicture(@Param(value = "memberId") Long memberId, @Param(value = "id") Long id);
 }

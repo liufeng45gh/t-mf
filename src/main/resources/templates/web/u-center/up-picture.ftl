@@ -9,7 +9,7 @@
     <meta content="telephone=no" name="format-detection"/>
     <meta content="black" name="apple-mobile-web-app-status-bar-style"/>
     <title>修改图片</title>
-    <link rel="stylesheet" href="/css/u-center.css?v=1.0"/>
+    <link rel="stylesheet" href="/css/u-center.css?v=1.1"/>
     <script  src="/web/js/jquery-3.1.1.js"></script>
     <script  src="/web/js/common.js"></script>
     <script  type="text/javascript" src="/layer/layer.js"></script>
@@ -40,10 +40,12 @@
         <div  class="login-wrap login-wrap-active">
             <div class="area-container">
                 <div class="fieldName">更多图片</div>
+                <#list pictureList as picture>
                 <div class="more-img-con">
-                   <img src="http://localhost/images/02883d09-b9dc-4a98-9b76-a446eb174be7.jpg"/>
-                    <div class="img-delete-btn">删除</div>
+                   <img src="${picture.pictureUrl}"/>
+                    <div class="img-delete-btn" onclick="deletePicture(${picture.id});">删除</div>
                 </div>
+                </#list>
             </div>
         </div>
 
@@ -55,7 +57,7 @@
             </div>
         </form>
 
-        <a   class="btn btn-to-login" style="display:block;" href="/u-center/index.html">->返回主菜单</a>
+        <a   class="btn btn-to-login" style="display:block;margin-top: 0.3rem;" href="/u-center/index.html">->返回主菜单</a>
     </div>
 </section>
 <script  src="/web/js/u-center/up-picture.js?v=1.0"></script>

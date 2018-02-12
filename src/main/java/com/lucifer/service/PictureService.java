@@ -20,4 +20,14 @@ public class PictureService {
         Long tokenMemberId =  memberLoginService.getMemberIdByToken(token);
         return pictureMapper.memberPictureList(tokenMemberId);
     }
+
+    public void insertMorePicture(String token, String picture){
+        Long tokenMemberId =  memberLoginService.getMemberIdByToken(token);
+        pictureMapper.insertMorePicture(tokenMemberId,picture);
+    }
+
+    public void deletePicture(String token, Long id){
+        Long tokenMemberId =  memberLoginService.getMemberIdByToken(token);
+        pictureMapper.deletePicture(tokenMemberId,id);
+    }
 }

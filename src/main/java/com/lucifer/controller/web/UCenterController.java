@@ -7,6 +7,8 @@ import com.lucifer.service.MemberLoginService;
 import com.lucifer.service.MemberService;
 import com.lucifer.service.PictureService;
 import com.lucifer.utils.Result;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -30,6 +32,8 @@ public class UCenterController {
 
     @Resource
     private PictureService pictureService;
+
+    private Logger logger = LoggerFactory.getLogger(this.getClass());
 
 
     @RequestMapping(value="/index",method = RequestMethod.GET)
@@ -92,8 +96,6 @@ public class UCenterController {
     public String toUpdatePrice(@CookieValue String token, HttpServletRequest request){
         Member member = memberLoginService.getMemberByToken(token);
         request.setAttribute("member",member);
-        List<Picture> pictureList = pictureService.memberPictureList(token);
-        request.setAttribute("pictureList",pictureList);
         return "/web/u-center/up-price";
     }
 
@@ -108,6 +110,11 @@ public class UCenterController {
     public String toUpdatePicture(@CookieValue String token, HttpServletRequest request){
         Member member = memberLoginService.getMemberByToken(token);
         request.setAttribute("member",member);
+
+        List<Picture> pictureList = pictureService.memberPictureList(token);
+        logger.info("pictureList.size() is {}",pictureList.size());
+        request.setAttribute("pictureList",pictureList);
+
         return "/web/u-center/up-picture";
     }
 
@@ -123,8 +130,16 @@ public class UCenterController {
     @RequestMapping(value="/more-picture-add",method = RequestMethod.POST)
     @ResponseBody
     public Result submitMorePictureAdd(@CookieValue String token, String picture){
-        memberService.insertMorePicture(token,picture);
+        pictureService.insertMorePicture(token,picture);
         return Result.ok();
     }
+
+    @RequestMapping(value="/picture-delete",method = RequestMethod.POST)
+    @ResponseBody
+    public Result deletePicture(@CookieValue String token, Long id){
+        pictureService.deletePicture(token,id);
+        return Result.ok();
+    }
+
 
 }
