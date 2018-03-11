@@ -103,6 +103,9 @@ public class Member implements Serializable{
 	// 更新时间（记录）
 	protected Date updatedAt;
 
+	private Integer isCheck;
+
+
 	public Long getId() {
 		return id;
 	}
@@ -368,5 +371,11 @@ public class Member implements Serializable{
 		this.selfShow = selfShow;
 	}
 
+	public Integer getIsCheck() {
+		return isCheck;
+	}
 
+	public void setIsCheck(Integer isCheck) {
+		this.isCheck = isCheck;
+	}
 }

@@ -4,6 +4,8 @@ import com.lucifer.annotation.ShopDb;
 import com.lucifer.model.Member;
 import org.apache.ibatis.annotations.Param;
 
+import java.util.List;
+
 @ShopDb
 public interface MemberMapper {
 
@@ -28,6 +30,10 @@ public interface MemberMapper {
     Integer updateMemberPrice(Member member);
 
     Integer updateMemberMainPicture(@Param(value = "id") Long id,@Param(value = "picture") String picture);
+
+    List<Member> memberCmsSearch(@Param(value = "sql") String sql);
+
+    Integer memberCmsSearchCount(@Param(value = "sql") String sql);
 
 
 }

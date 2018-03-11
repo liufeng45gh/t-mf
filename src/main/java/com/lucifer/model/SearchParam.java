@@ -29,6 +29,10 @@ public class SearchParam {
 
     private String status;
 
+    private Integer selfShow;
+
+    private Integer isCheck;
+
     public String getAccount() {
         return account;
     }
@@ -135,5 +139,21 @@ public class SearchParam {
 
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    public Integer getSelfShow() {
+        return selfShow;
+    }
+
+    public void setSelfShow(Integer selfShow) {
+        this.selfShow = selfShow;
+    }
+
+    public Integer getIsCheck() {
+        return isCheck;
+    }
+
+    public void setIsCheck(Integer isCheck) {
+        this.isCheck = isCheck;
     }
 }

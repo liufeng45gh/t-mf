@@ -31,6 +31,7 @@
         <result column="day_price" property="dayPrice"/>
         <result column="picture" property="picture"/>
         <result column="self_show" property="selfShow"/>
+        <result column="is_check" property="isCheck"/>
         <result column="created_at" property="createdAt"/>
         <result column="updated_at" property="updatedAt"/>
     </resultMap>
@@ -104,10 +105,10 @@
     </update>
 
     <select id="memberCmsSearch"  resultMap="MemberMap">
-        ${_parameter}
+        ${sql}
     </select>
     <select id="memberCmsSearchCount" resultType="java.lang.Integer">
-        ${_parameter}
+        ${sql}
     </select>
 
 

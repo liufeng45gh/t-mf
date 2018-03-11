@@ -35,10 +35,10 @@
                                         <th width="140px">id</th>
                                         <th width="159px">电话</th>
                                         <th width="200px">微信id</th>
-                                        <th width="200px">qqid</th>
+                                        <th width="200px">个人设置是否显示</th>
                                         <th width="150px">昵称</th>
 
-                                        <th width="180px">状态</th>
+                                        <th width="180px">是否审核</th>
 
                                         <th>操作</th>
                                     </tr>
@@ -49,18 +49,18 @@
                                         <td>${(user.id)!}</td>
 
                                         <td>${user.phone}</td>
-                                        <td>${(user.weixinId)!}</td>
-                                        <td>${(user.qqId)!}</td>
+                                        <td>${(user.weixin)!}</td>
+                                        <td>${user.selfShow?default("")}<#if user.selfShow?default(0) = 1>  显示<#else> 不显示  </#if> </td>
                                         <td>${user.nickName}</td>
 
-                                        <td>${user.status?default("")}<#if user.status?default("") = "block">  已禁用 <#else> 正常  </#if>  </td>
+                                        <td>${user.isCheck?default("")}<#if user.isCheck?default(0) = 1>  已审核 <#else> 未审核  </#if>  </td>
 
                                         <td>
 
-                                            <#if user.status?default("") = "block">
-                                                <a href="javascript:void(0)" onclick="activation(${user.id?c})">恢复用户</a>
+                                            <#if user.isCheck?default(0) = 1>
+                                                <a href="javascript:void(0)" onclick="activation(${user.id?c})">取消审核</a>
                                             <#else>
-                                                <a href="javascript:void(0)" onclick="setUserBlock(${user.id?c})">禁用用户</a>
+                                                <a href="javascript:void(0)" onclick="setUserBlock(${user.id?c})">审核用户</a>
                                             </#if>
 
                                         </td>

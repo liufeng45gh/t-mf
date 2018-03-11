@@ -3,10 +3,15 @@ package com.lucifer.service;
 import com.lucifer.mapper.shop.MemberMapper;
 import com.lucifer.mapper.shop.PictureMapper;
 import com.lucifer.model.Member;
+import com.lucifer.model.SearchParam;
 import com.lucifer.utils.Result;
+import com.lucifer.utils.StringHelper;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 @Service
 public class MemberService {
@@ -19,6 +24,8 @@ public class MemberService {
 
     @Resource
     private PictureMapper pictureMapper;
+
+    Logger logger = LoggerFactory.getLogger(this.getClass());
 
     public Result updateNickName(String token,String nickName){
         Long tokenMemberId =  memberLoginService.getMemberIdByToken(token);
@@ -61,6 +68,58 @@ public class MemberService {
     public void updateMemberMainPicture(String token, String picture){
         Long tokenMemberId =  memberLoginService.getMemberIdByToken(token);
         memberMapper.updateMemberMainPicture(tokenMemberId,picture);
+    }
+
+    public List<Member> memberCmsSearch(SearchParam param){
+        String sql = "select * from member   where 1=1 ";
+        if (!StringHelper.isEmpty(param.getPhone())) {
+            sql = sql + "and member.phone like '"+param.getPhone()+"%' ";
+        }
+        if (!StringHelper.isEmpty(param.getNickName())) {
+            sql = sql + "and member.nick_name like '"+param.getNickName()+"%' ";
+        }
+
+        if (null != param.getSelfShow()) {
+            sql = sql + "and member.self_show = "+param.getSelfShow()+" ";
+        }
+        if (null != param.getIsCheck()) {
+            sql = sql + "and member.is_check = "+param.getIsCheck()+" ";
+        }
+        sql = sql + "order by member.id desc limit "+param.getOffset()+","+param.getCount();
+
+
+
+        logger.info("sql is : "+sql);
+
+        List<Member> memberList = memberMapper.memberCmsSearch(sql);
+
+
+
+        return memberList;
+    }
+
+    public Integer memberCmsSearchCount(SearchParam param){
+        String sql = "select count(*) from member   where 1=1 ";
+        if (!StringHelper.isEmpty(param.getPhone())) {
+            sql = sql + "and member.phone like '"+param.getPhone()+"%' ";
+        }
+        if (!StringHelper.isEmpty(param.getNickName())) {
+            sql = sql + "and member.nick_name like '"+param.getNickName()+"%' ";
+        }
+
+        if (null != param.getSelfShow()) {
+            sql = sql + "and member.self_show = "+param.getSelfShow()+" ";
+        }
+        if (null != param.getIsCheck()) {
+            sql = sql + "and member.is_check = "+param.getIsCheck()+" ";
+        }
+
+        logger.info("sql is : "+sql);
+
+        Integer recordCount  = memberMapper.memberCmsSearchCount(sql);
+
+
+        return recordCount;
     }
 
 
